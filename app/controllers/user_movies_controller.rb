@@ -1,5 +1,6 @@
 class UserMoviesController < ApplicationController
   def index
+    @user = User.find(params[:id])
     conn = Faraday.new("https://api.themoviedb.org") do |faraday|
       faraday.params['api_key'] = ENV['movie_api_key']
     end
