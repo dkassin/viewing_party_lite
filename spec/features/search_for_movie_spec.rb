@@ -10,10 +10,9 @@ RSpec.describe 'Movie Search' do
     it 'allows user to search for movie' do
       visit "/users/#{@user_1.id}/discover"
 
-      fill_in :search, with: 'The Matrix'
+      fill_in :search, with: 'Aliens'
       click_button 'Search'
-
-      expect(page.status_code).to eq 200
+      expect(page.status_code).to eq 204
       expect(page).to have_content("Aliens")
     end
   end
