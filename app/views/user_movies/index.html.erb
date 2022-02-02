@@ -1,8 +1,8 @@
 <h1>Viewing Party Lite</h1>
 <h2>Top Rated Movies</h2>
 
+<%= button_to "Discover Page", "/users/#{@user.id}/discover", method: :get, params: {:search => nil} %>
 
 <% @movies.each do |movie| %>
-  <%= movie[:title] %>
-  <%= movie[:vote_average] %>
+  <p><%= link_to "#{movie[:title]}", "/users/#{@user.id}/movies/#{movie[:id]}" %> Vote Average: <%= movie[:vote_average] %></p>
 <% end %>
