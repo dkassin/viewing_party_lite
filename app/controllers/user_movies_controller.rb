@@ -17,15 +17,19 @@ class UserMoviesController < ApplicationController
   end
 
   def search
-      @user = User.find(params[:id])
-      conn = Faraday.new("https://api.themoviedb.org") do |faraday|
-        faraday.params['api_key'] = ENV['movie_api_key']
-      end
-      response = conn.get("/3/search/movie?query=#{params[:search]}&api_key=#{ENV['movie_api_key']}")
-      data = JSON.parse(response.body, symbolize_names: true)
-      @movies = data[:results]
-      @search = params[:search]
-      render :index
+    @user = User.find(params[:id])
+    conn = Faraday.new("https://api.themoviedb.org") do |faraday|
+      faraday.params['api_key'] = ENV['movie_api_key']
     end
-
+    response = conn.get("/3/search/movie?query=#{params[:search]}&api_key=#{ENV['movie_api_key']}")
+    data = JSON.parse(response.body, symbolize_names: true)
+    @movies = data[:results]
+    @search = params[:search]
+    render :index
   end
+
+  def show
+    binding.pry
+    @user = User.find(params[:user_id])
+  end
+end
