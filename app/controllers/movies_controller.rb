@@ -17,14 +17,14 @@ class MoviesController < ApplicationController
       faraday.params['api_key'] = ENV['movie_api_key']
     end
 
-    response = conn.get("/3/search/movie?query=#{params[:search]}&api_key=6bb70d8448dabf0d4dbdfa9e215e1826")
+    response = conn.get("/3/search/movie?query=#{params[:search]}&api_key=#{ENV['movie_api_key']}")
     data = JSON.parse(response.body, symbolize_names: true)
 
-    movie = data[:results]
+    @movies = data[:results]
+    @search = params[:search]
+    # @found_movie = movie.find {|m| m[:original_title] == params[:search]}
+    # @movie = @found_movie[:original_title]
 
-    @found_movie = movie.find {|m| m[:original_title] == params[:search]}
-    @movie = @found_movie[:original_title]
-    binding.pry
-    render "/users/#{@user.id}/discover"
+    render "/users/discover"
   end
 end
