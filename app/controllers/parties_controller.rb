@@ -7,7 +7,6 @@ class PartiesController < ApplicationController
   end
 
   def create
-    all_users = User.all
     @user = User.find(params[:user_id])
     @movie = MovieFacade.movie_info(params[:id])
     @party = Party.new(party_params.merge(host: @user.id, title: @movie.title, poster_path: @movie.poster_path, day: params[:day], start_time: params[:start_time]))
