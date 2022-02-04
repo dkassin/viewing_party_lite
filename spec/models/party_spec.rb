@@ -5,10 +5,24 @@ RSpec.describe Party, type: :model do
     it { should have_many :user_parties}
     it { should have_many(:users).through(:user_parties) }
   end
+
   describe 'validations' do
-    it { should validate_presence_of :duration}
-    it { should validate_presence_of :day}
-    it { should validate_presence_of :start_time}
+    subject { Party.new(duration: "120", day: "11/11/11", start_time: "7:00") }
+
+    describe '#duration' do
+      it { should validate_presence_of :duration }
+      it { should_not allow_value(nil).for(:duration) }
+    end
+
+    describe '#day' do
+      it { should validate_presence_of :day }
+      it { should_not allow_value(nil).for(:day) }
+    end
+
+    describe '#start_time' do
+      it { should validate_presence_of :start_time }
+      it { should_not allow_value(nil).for(:start_time) }
+    end
   end
 
    describe 'instance methods' do
