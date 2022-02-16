@@ -74,4 +74,56 @@ http_interactions:
         Kingdom"}],"release_date":"1998-08-28","revenue":28356188,"runtime":105,"spoken_languages":[{"english_name":"English","iso_639_1":"en","name":"English"}],"status":"Released","tagline":"A
         Disgrace to Criminals Everywhere.","title":"Lock, Stock and Two Smoking Barrels","video":false,"vote_average":8.2,"vote_count":5240}'
   recorded_at: Fri, 04 Feb 2022 17:02:25 GMT
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/movie/100?api_key=&language=en-US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.2.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 16 Feb 2022 22:15:33 GMT
+      Server:
+      - openresty
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
+        Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=300
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 28d79637e27f11e3ab19a9515e273a5a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - b54daSrq5FwNraCdcNfkdRmllfjN4_D3FLgkn9kaEIwk4P4nmt4Yzg==
+    body:
+      encoding: UTF-8
+      string: '{"status_code":7,"status_message":"Invalid API key: You must be granted
+        a valid key.","success":false}
+
+        '
+  recorded_at: Wed, 16 Feb 2022 22:15:33 GMT
 recorded_with: VCR 6.0.0
