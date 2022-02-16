@@ -29,9 +29,9 @@ RSpec.describe 'Welcome Index Page' do
     end
 
     it 'lists the existing users which link to their dashboard' do
-      user_1 = User.create!(name: "David", email: "david@email.com")
-      user_2 = User.create!(name: "Wade", email: "wade@email.com")
-      user_3 = User.create!(name: "Robin", email: "robin@email.com")
+      user_1 = User.create!(name: "David", email: "david@email.com", password: 'test', password_confirmation: 'test')
+      user_2 = User.create!(name: "Wade", email: "wade@email.com", password: 'test', password_confirmation: 'test')
+      user_3 = User.create!(name: "Robin", email: "robin@email.com", password: 'test', password_confirmation: 'test')
 
       visit root_path
 

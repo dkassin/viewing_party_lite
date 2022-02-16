@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/login', to: 'users#login_form'
+  post '/login', to: 'users#login_user'
   get '/register', to: 'welcome#register'
   post '/register', to: 'welcome#create'
   get '/users/:id/discover', to: 'users#discover'

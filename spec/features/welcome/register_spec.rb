@@ -19,6 +19,8 @@ RSpec.describe 'Welcome Register Page' do
 
       fill_in('Name', with: 'Marco Polo')
       fill_in('Email', with: "Marco_polo@gmail.com")
+      fill_in('Password', with: "test123")
+      fill_in('Password confirmation', with: "test123")
 
       click_button('Submit')
 
@@ -29,6 +31,21 @@ RSpec.describe 'Welcome Register Page' do
       visit "/register"
 
       fill_in('Name', with: 'Marco Polo')
+
+      click_button('Submit')
+
+      expect(page).to have_content("Error: Name can't be blank, Email can't be blank and must be valid.")
+
+      expect(current_path).to eq("/register")
+    end
+
+    it 'has a form that is filled out and takes you to new user show page' do
+      visit "/register"
+
+      fill_in('Name', with: 'Marco Polo')
+      fill_in('Email', with: "Marco_polo@gmail.com")
+      fill_in('Password', with: "test123")
+      fill_in('Password confirmation', with: "test124")
 
       click_button('Submit')
 
