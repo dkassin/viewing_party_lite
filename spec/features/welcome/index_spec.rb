@@ -23,6 +23,9 @@ RSpec.describe 'Welcome Index Page' do
 
       fill_in :name, with: 'Wade'
       fill_in :email, with: 'Wade@email.com'
+      fill_in :password, with: 'test123'
+      fill_in :password_confirmation, with: 'test123'
+
       click_button 'Submit'
 
       expect(page).to have_content("Wade")
@@ -32,7 +35,10 @@ RSpec.describe 'Welcome Index Page' do
       user_1 = User.create!(name: "David", email: "david@email.com", password: 'test', password_confirmation: 'test')
       user_2 = User.create!(name: "Wade", email: "wade@email.com", password: 'test', password_confirmation: 'test')
       user_3 = User.create!(name: "Robin", email: "robin@email.com", password: 'test', password_confirmation: 'test')
-
+      visit "/login"
+      fill_in "Email", with: "#{user_1.email}"
+      fill_in "Password", with: "#{user_1.password}"
+      click_button("Log In")
       visit root_path
 
       within "#user-#{user_1.id}" do
@@ -40,7 +46,20 @@ RSpec.describe 'Welcome Index Page' do
         click_link("#{user_1.email}")
       end
 
-      expect(current_path).to eq("/users/#{user_1.id}")
+      expect(current_path).to eq("/dashboard")
+    end
+
+    it 'can log out' do
+      user_1 = User.create!(name: "David", email: "david@email.com", password: 'test', password_confirmation: 'test')
+
+      visit "/login"
+      fill_in "Email", with: "#{user_1.email}"
+      fill_in "Password", with: "#{user_1.password}"
+      click_button("Log In")
+      visit root_path
+
+      click_link('Logout')
+      expect(current_path).to eq(logout)
     end
   end
 end

@@ -24,8 +24,7 @@ RSpec.describe 'Welcome Register Page' do
 
       click_button('Submit')
 
-      last = User.all.last
-      expect(current_path).to eq("/users/#{last.id}")
+      expect(current_path).to eq("/dashboard")
     end
     it "render flash message" do
       visit "/register"
@@ -53,5 +52,7 @@ RSpec.describe 'Welcome Register Page' do
 
       expect(current_path).to eq("/register")
     end
+
+  
   end
 end
